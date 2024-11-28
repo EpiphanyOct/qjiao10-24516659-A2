@@ -1,10 +1,10 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public abstract class Ride implements RideInterface {
+public class Ride {
     private String rideName;
-    private Employee operator;
     private Queue<Visitor> queue = new LinkedList<>();
+    private Employee operator;
 
     public Ride() {
     }
@@ -14,33 +14,13 @@ public abstract class Ride implements RideInterface {
         this.operator = operator;
     }
 
-    @Override
-    public void addVisitorToQueue(Visitor visitor) {
-        queue.offer(visitor);
-    }
-
-    @Override
-    public void removeVisitorFromQueue(Visitor visitor) {
-        queue.remove(visitor);
-    }
-
-    @Override
-    public void printQueue() {
-        queue.forEach(visitor -> System.out.println(visitor.getName()));
-    }
-
-    // Other methods from RideInterface
-
+    // Getters and Setters
     public String getRideName() {
         return rideName;
     }
 
-    public void setOperator(Employee operator) {
-        this.operator = operator;
-    }
-
-    public Employee getOperator() {
-        return operator;
+    public void setRideName(String rideName) {
+        this.rideName = rideName;
     }
 
     public Queue<Visitor> getQueue() {
@@ -49,5 +29,13 @@ public abstract class Ride implements RideInterface {
 
     public void setQueue(Queue<Visitor> queue) {
         this.queue = queue;
+    }
+
+    public Employee getOperator() {
+        return operator;
+    }
+
+    public void setOperator(Employee operator) {
+        this.operator = operator;
     }
 }
