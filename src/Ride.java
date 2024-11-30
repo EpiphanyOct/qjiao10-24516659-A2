@@ -1,10 +1,10 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Ride {
+public class Ride implements RideInterface {
     private String rideName;
-    private Queue<Visitor> queue = new LinkedList<>();
     private Employee operator;
+    private Queue<Visitor> queue = new LinkedList<>();
 
     public Ride() {
     }
@@ -14,13 +14,37 @@ public class Ride {
         this.operator = operator;
     }
 
-    // Getters and Setters
+    @Override
+    public void addVisitorToQueue(Visitor visitor) {
+        queue.offer(visitor);
+    }
+
+    @Override
+    public void removeVisitorFromQueue(Visitor visitor) {
+        queue.remove(visitor);
+    }
+
+    @Override
+    public void printQueue() {
+        queue.forEach(visitor -> System.out.println(visitor.getName()));
+    }
+
+    // Implement the remaining methods from RideInterface
+
     public String getRideName() {
         return rideName;
     }
 
     public void setRideName(String rideName) {
         this.rideName = rideName;
+    }
+
+    public Employee getOperator() {
+        return operator;
+    }
+
+    public void setOperator(Employee operator) {
+        this.operator = operator;
     }
 
     public Queue<Visitor> getQueue() {
@@ -31,11 +55,33 @@ public class Ride {
         this.queue = queue;
     }
 
-    public Employee getOperator() {
-        return operator;
+    @Override
+    public void runOneCycle() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'runOneCycle'");
     }
 
-    public void setOperator(Employee operator) {
-        this.operator = operator;
+    @Override
+    public void addVisitorToHistory(Visitor visitor) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addVisitorToHistory'");
+    }
+
+    @Override
+    public boolean checkVisitorFromHistory(Visitor visitor) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'checkVisitorFromHistory'");
+    }
+
+    @Override
+    public int numberOfVisitors() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'numberOfVisitors'");
+    }
+
+    @Override
+    public void printRideHistory() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'printRideHistory'");
     }
 }
