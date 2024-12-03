@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -5,6 +6,7 @@ public class Ride implements RideInterface {
     private String rideName;
     private Employee operator;
     private Queue<Visitor> queue = new LinkedList<>();
+    private LinkedList<Visitor> rideHistory = new LinkedList<>();
 
     public Ride() {
     }
@@ -26,11 +28,55 @@ public class Ride implements RideInterface {
 
     @Override
     public void printQueue() {
+        System.out.println("Current Queue:");
         queue.forEach(visitor -> System.out.println(visitor.getName()));
     }
 
-    // Implement the remaining methods from RideInterface
+    @Override
+    public void runOneCycle() {
+        if (operator == null) {
+            System.out.println("Cannot run the ride: No operator assigned.");
+            return;
+        }
+        if (queue.isEmpty()) {
+            System.out.println("Cannot run the ride: No visitors in the queue.");
+            return;
+        }
+        System.out.println("Running one cycle of " + rideName);
+        // Assuming maxRider is set to the maximum number of riders for one cycle
+        int maxRider = 4; // This value should be set according to the specific ride
+        for (int i = 0; i < maxRider && !queue.isEmpty(); i++) {
+            Visitor visitor = queue.poll();
+            addVisitorToHistory(visitor);
+        }
+    }
 
+    @Override
+    public void addVisitorToHistory(Visitor visitor) {
+        rideHistory.add(visitor);
+    }
+
+    @Override
+    public boolean checkVisitorFromHistory(Visitor visitor) {
+        return rideHistory.contains(visitor);
+    }
+
+    @Override
+    public int numberOfVisitors() {
+        return rideHistory.size();
+    }
+
+    @Override
+    public void printRideHistory() {
+        System.out.println("Ride History:");
+        Iterator<Visitor> iterator = rideHistory.iterator();
+        while (iterator.hasNext()) {
+            Visitor visitor = iterator.next();
+            System.out.println(visitor.getName());
+        }
+    }
+
+    // Getters and Setters
     public String getRideName() {
         return rideName;
     }
@@ -55,33 +101,11 @@ public class Ride implements RideInterface {
         this.queue = queue;
     }
 
-    @Override
-    public void runOneCycle() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runOneCycle'");
+    public LinkedList<Visitor> getRideHistory() {
+        return rideHistory;
     }
 
-    @Override
-    public void addVisitorToHistory(Visitor visitor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addVisitorToHistory'");
-    }
-
-    @Override
-    public boolean checkVisitorFromHistory(Visitor visitor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkVisitorFromHistory'");
-    }
-
-    @Override
-    public int numberOfVisitors() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'numberOfVisitors'");
-    }
-
-    @Override
-    public void printRideHistory() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printRideHistory'");
+    public void setRideHistory(LinkedList<Visitor> rideHistory) {
+        this.rideHistory = rideHistory;
     }
 }
