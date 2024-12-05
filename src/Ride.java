@@ -1,9 +1,8 @@
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class Ride implements RideInterface {
     private String rideName;
@@ -82,17 +81,9 @@ public class Ride implements RideInterface {
         }
     }
 
+    // Comparator rideHistory
     public void sortRideHistory() {
-        Collections.sort(rideHistory, new Comparator<Visitor>() {
-            @Override
-            public int compare(Visitor v1, Visitor v2) {
-                int nameCompare = v1.getName().compareTo(v2.getName());
-                if (nameCompare != 0) {
-                    return nameCompare;
-                }
-                return Integer.compare(v1.getAge(), v2.getAge());
-            }
-        });
+        Collections.sort(rideHistory, new VisitorComparator());
     }
 
     public void printSortedRideHistory() {
@@ -100,6 +91,18 @@ public class Ride implements RideInterface {
         sortRideHistory();
         for (Visitor visitor : rideHistory) {
             System.out.println(visitor.getName() + ", Age: " + visitor.getAge());
+        }
+    }
+
+    // VisitorComparator  Comparator 
+    class VisitorComparator implements Comparator<Visitor> {
+        @Override
+        public int compare(Visitor v1, Visitor v2) {
+            int nameCompare = v1.getName().compareTo(v2.getName());
+            if (nameCompare != 0) {
+                return nameCompare;
+            }
+            return Integer.compare(v1.getAge(), v2.getAge());
         }
     }
 
