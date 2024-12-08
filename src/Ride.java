@@ -81,7 +81,6 @@ public class Ride implements RideInterface {
         }
     }
 
-    // Comparator rideHistory
     public void sortRideHistory() {
         Collections.sort(rideHistory, new VisitorComparator());
     }
@@ -94,7 +93,6 @@ public class Ride implements RideInterface {
         }
     }
 
-    // VisitorComparator  Comparator 
     class VisitorComparator implements Comparator<Visitor> {
         @Override
         public int compare(Visitor v1, Visitor v2) {
