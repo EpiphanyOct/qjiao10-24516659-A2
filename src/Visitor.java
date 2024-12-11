@@ -12,7 +12,6 @@ public class Visitor extends Person {
         this.ticketType = ticketType;
     }
 
-    // Getters and Setters
     public String getVisitorId() {
         return visitorId;
     }

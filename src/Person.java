@@ -3,8 +3,7 @@ public abstract class Person {
     private int age;
     private String id;
 
-    public Person() {
-    }
+    public Person() {}
 
     public Person(String name, int age, String id) {
         this.name = name;
@@ -12,7 +11,6 @@ public abstract class Person {
         this.id = id;
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
     }

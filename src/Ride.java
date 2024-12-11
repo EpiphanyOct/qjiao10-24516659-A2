@@ -9,16 +9,15 @@ public class Ride implements RideInterface {
     private Employee operator;
     private Queue<Visitor> queue = new LinkedList<>();
     private LinkedList<Visitor> rideHistory = new LinkedList<>();
-    private int maxRider; 
-    private int numOfCycles; 
+    private int maxRider;
+    private int numOfCycles;
 
-    public Ride() {
-    }
+    public Ride() {}
 
     public Ride(String rideName, Employee operator) {
         this.rideName = rideName;
         this.operator = operator;
-        this.maxRider = 7; 
+        this.maxRider = 7;
         this.numOfCycles = 0;
     }
 
@@ -151,5 +150,15 @@ public class Ride implements RideInterface {
 
     public void setNumOfCycles(int numOfCycles) {
         this.numOfCycles = numOfCycles;
+    }
+
+    public void exportRideHistory() {
+        try (PrintWriter out = new PrintWriter("rideHistory.csv")) {
+            for (Visitor visitor : rideHistory) {
+                out.println(visitor.getName() + "," + visitor.getAge() + "," + visitor.getId() + "," + visitor.getVisitorId() + "," + visitor.getTicketType());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
     }
 }

@@ -12,7 +12,6 @@ public class Employee extends Person {
         this.department = department;
     }
 
-    // Getters and Setters
     public String getEmployeeId() {
         return employeeId;
     }
