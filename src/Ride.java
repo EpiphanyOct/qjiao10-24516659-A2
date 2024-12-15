@@ -3,6 +3,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Ride implements RideInterface {
     private String rideName;
@@ -159,6 +160,24 @@ public class Ride implements RideInterface {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
+    public void importRideHistory() {
+        try (Scanner scanner = new Scanner(new java.io.File("rideHistory.csv"))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] data = line.split(",");
+                String name = data[0];
+                int age = Integer.parseInt(data[1]);
+                String id = data[2];
+                String visitorId = data[3];
+                String ticketType = data[4];
+                Visitor visitor = new Visitor(name, age, id, visitorId, ticketType);
+                rideHistory.add(visitor);
+            }
+        } catch (Exception e) {
+            System.out.println("Error reading from file: " + e.getMessage());
         }
     }
 }
