@@ -13,12 +13,9 @@ public class AssignmentTwo {
 
     public void partOne() {
         System.out.println("Part 1 - Classes and Inheritance");
-        Person person = new Person("John Doe", 30, "ID001");
         Employee employee = new Employee("John Doe", 30, "ID001", "E001", "Rides");
         Visitor visitor = new Visitor("Visitor1", 25, "V001", "V001", "Regular");
         Ride ride = new Ride("Roller Coaster", employee);
-
-        System.out.println("Person Name: " + person.getName());
         System.out.println("Employee ID: " + employee.getEmployeeId());
         System.out.println("Visitor ID: " + visitor.getVisitorId());
         System.out.println("Ride Name: " + ride.getRideName());
@@ -26,7 +23,6 @@ public class AssignmentTwo {
 
     public void partTwo() {
         System.out.println("\nPart 2 - Abstract class and interface");
-        // This part is demonstrated in the class definitions of Person, Ride, and RideInterface
     }
 
     public void partThree() {

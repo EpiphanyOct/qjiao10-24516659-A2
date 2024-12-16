@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -87,7 +89,6 @@ public class Ride implements RideInterface {
 
     public void printSortedRideHistory() {
         System.out.println("Sorted Ride History:");
-        sortRideHistory();
         for (Visitor visitor : rideHistory) {
             System.out.println(visitor.getName() + ", Age: " + visitor.getAge());
         }
